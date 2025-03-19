@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="HybridCacheExample.http" />
+    <None Remove="ReadMe.md" />
   </ItemGroup>
 
   <ItemGroup>

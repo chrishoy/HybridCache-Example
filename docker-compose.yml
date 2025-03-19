@@ -1,0 +1,17 @@
+services:
+  redis:
+    image: "redis:alpine"  # Lightweight Redis image
+    container_name: "redis_container"
+    ports:
+      - "6379:6379"  # Expose Redis port to localhost
+    restart: always
+    volumes:
+      - redis_data:/data  # Persist Redis data
+
+volumes:
+  redis_data:
+    driver: local
+    driver_opts:
+      type: "none"
+      o: "bind"
+      device: "D:/Docker/Volumes/Redis/data"  

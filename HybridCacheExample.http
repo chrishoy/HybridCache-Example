@@ -1,0 +1,16 @@
+@BaseAddress = https://localhost:7112
+
+# Get weather forecast for London
+GET {{BaseAddress}}/weather/London
+Accept: application/json
+###
+
+# Get weather forecast for Paris
+GET {{BaseAddress}}/weather/Paris
+Accept: application/json
+###
+
+# Clear ALL weather forecasts from cache (that have the "weather" tag)
+GET {{BaseAddress}}/clear/weather
+Accept: application/json
+###

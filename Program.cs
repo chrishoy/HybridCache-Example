@@ -48,12 +48,16 @@ app.MapGet("/weather/{city}", async (string city, WeatherService weatherService)
     var forecast = await weatherService.GetCurrentWeatherAsync(city, apiKey);
     return forecast is null ? Results.NotFound() : Results.Ok(forecast);
 });
-//.WithName("GetWeatherForecast")
-//.WithOpenApi();
 
-app.MapGet("/clear/{tag}", async (string tag, HybridCache hybridCache) =>
+app.MapGet("/clear", async (HybridCache hybridCache) =>
 {
-    await hybridCache.RemoveByTagAsync(tag);
+    await hybridCache.RemoveByTagAsync("weather");
+    return Results.Ok();
+});
+
+app.MapGet("/clear/{city}", async (string city, HybridCache hybridCache) =>
+{
+    await hybridCache.RemoveByTagAsync(city);
     return Results.Ok();
 });
 

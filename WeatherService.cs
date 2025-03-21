@@ -19,9 +19,9 @@ internal class WeatherService
     {
         var cacheKey = $"WeatherService.GetCurrentWeatherAsync({cityOrCountry})";
 
-        // Either lookup weather from cache or fetch it from the API - Tag all entries with "weather"
+        // Either lookup weather from cache or fetch it from the API - Tag all entries with "weather" and city
         return await _hybridCache.GetOrCreateAsync(cacheKey, 
-            async _ => await GetWeatherFromApiAsync(cityOrCountry, apiKey), tags: ["weather"]);
+            async _ => await GetWeatherFromApiAsync(cityOrCountry, apiKey), tags: [cityOrCountry, "weather"]);
     }
 
     private async Task<WeatherResponse?> GetWeatherFromApiAsync(string cityOrCountry, string apiKey)
@@ -32,7 +32,9 @@ internal class WeatherService
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
-            return JsonSerializer.Deserialize<WeatherResponse>(content);
+            var data = JsonSerializer.Deserialize<WeatherResponse>(content);
+            if (data is not null) data.as_at = DateTime.UtcNow;
+            return data;
         }
 
         return null;

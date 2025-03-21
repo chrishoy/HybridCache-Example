@@ -1,6 +1,7 @@
 ﻿namespace HybridCacheExample;
 public class WeatherResponse
 {
+    public DateTime? as_at { get; set; }
     public Coord coord { get; set; }
     public List<Weather> weather { get; set; }
     public string @base { get; set; }

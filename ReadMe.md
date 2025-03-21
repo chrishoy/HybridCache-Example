@@ -1,4 +1,4 @@
-## Example usage of FusionCache
+## OpenWeather API Example usage using FusionCache and Redis
 This is a simple example of how to use `FusionCache` in a .NET Core application to provide L1 and L2 caching.
 we'll use this until Microsoft releases the official version of the HybridCache.
 

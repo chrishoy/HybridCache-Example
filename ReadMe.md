@@ -1,13 +1,16 @@
 ## OpenWeather API Example usage using FusionCache and Redis
 This is a simple example of how to use `FusionCache` in a .NET Core application to provide L1 and L2 caching.
-we'll use this until Microsoft releases the official version of the HybridCache.
 
-`Microsoft.Extensions.Caching.HybridCache` is currently in preview only.
+It showcases selective cache invalidation using Tags.
+
+We'll use this until Microsoft releases the official version of the HybridCache.
+
+`Microsoft.Extensions.Caching.HybridCache` is currently in preview only, so may change.
 
 ### How to use
 - `docker-compose up -d` to start `redis` on port 6379
 - `dotnet run` to start the application
-- Try the http examples in `HybridCacheExamples.http` (or use Swagger UI)
+- Try the http examples in `Examples.http` (or use Swagger UI)
 
 ### Note
 - `Fusioncache` allows you to use multiple cache providers, but in this example, we are using only `MemoryCache` and `RedisCache`.

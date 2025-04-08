@@ -30,7 +30,10 @@ builder.Services
     .WithDistributedCache(new RedisCache(new RedisCacheOptions { Configuration = "localhost:6379" }))
     .AsHybridCache();
 
+// Weather service and decorated with a resilient service
 builder.Services.AddSingleton<WeatherService>();
+builder.Services.AddSingleton<IWeatherService>( svc => 
+    new ResilientWeatherService(svc.GetRequiredService<WeatherService>()));
 
 var app = builder.Build();
 
@@ -43,7 +46,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/weather/{city}", async (string city, WeatherService weatherService) =>
+app.MapGet("/weather/{city}", async (string city, IWeatherService weatherService) =>
 {
     var forecast = await weatherService.GetCurrentWeatherAsync(city, apiKey);
     return forecast is null ? Results.NotFound() : Results.Ok(forecast);

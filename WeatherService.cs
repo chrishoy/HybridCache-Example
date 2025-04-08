@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace HybridCacheExample;
 
-internal class WeatherService
+internal class WeatherService : IWeatherService
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly HybridCache _hybridCache;
@@ -20,7 +20,7 @@ internal class WeatherService
         var cacheKey = $"WeatherService.GetCurrentWeatherAsync({cityOrCountry})";
 
         // Either lookup weather from cache or fetch it from the API - Tag all entries with "weather" and city
-        return await _hybridCache.GetOrCreateAsync(cacheKey, 
+        return await _hybridCache.GetOrCreateAsync(cacheKey,
             async _ => await GetWeatherFromApiAsync(cityOrCountry, apiKey), tags: [cityOrCountry, "weather"]);
     }
 

@@ -30,10 +30,9 @@ builder.Services
     .WithDistributedCache(new RedisCache(new RedisCacheOptions { Configuration = "localhost:6379" }))
     .AsHybridCache();
 
-// Weather service and decorated with a resilient service
-builder.Services.AddSingleton<WeatherService>();
-builder.Services.AddSingleton<IWeatherService>( svc => 
-    new ResilientWeatherService(svc.GetRequiredService<WeatherService>()));
+// Weather service (keyed) and decorated resilient service
+builder.Services.AddKeyedSingleton<IWeatherService, WeatherService>("OriginalWeatherService");
+builder.Services.AddSingleton<IWeatherService, ResilientWeatherService>();
 
 var app = builder.Build();
 

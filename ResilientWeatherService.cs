@@ -8,7 +8,8 @@ internal class ResilientWeatherService : IWeatherService
 {
     private readonly IWeatherService _weatherService;
 
-    public ResilientWeatherService(IWeatherService weatherService)
+    public ResilientWeatherService(
+        [FromKeyedServices("OriginalWeatherService")]IWeatherService weatherService)
     {
         _weatherService = weatherService;
     }

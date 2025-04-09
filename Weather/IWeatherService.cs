@@ -1,5 +1,4 @@
-﻿
-namespace HybridCacheExample;
+﻿namespace HybridCacheExample.Weather;
 
 internal interface IWeatherService
 {

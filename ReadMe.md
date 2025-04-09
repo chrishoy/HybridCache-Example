@@ -33,3 +33,8 @@ We'll use this until Microsoft releases the official version of the HybridCache.
   }
 }
 ```
+
+### Changes
+- Added `FusionCache` to the project.
+- Added Configuration Options for `Redis` and `OpenWeatherApi`
+- Added resiliency to the OpenWeather API calls using decorator pattern

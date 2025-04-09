@@ -1,4 +1,4 @@
-﻿namespace HybridCacheExample;
+﻿namespace HybridCacheExample.Weather;
 public class WeatherResponse
 {
     public DateTime? as_at { get; set; }

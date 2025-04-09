@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Hybrid;
 using System.Text.Json;
 
-namespace HybridCacheExample;
+namespace HybridCacheExample.Weather;
 
 internal class WeatherService : IWeatherService
 {

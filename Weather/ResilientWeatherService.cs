@@ -1,8 +1,7 @@
-﻿
-namespace HybridCacheExample;
+﻿namespace HybridCacheExample.Weather;
 
 /// <summary>
-/// Decorated weather service that retries the request up to 4 times in case of failure.
+/// Decorates original weather service adding retry requests up to 4 times in case of failure.
 /// </summary>
 internal class ResilientWeatherService : IWeatherService
 {
@@ -36,6 +35,7 @@ internal class ResilientWeatherService : IWeatherService
                 }
             }
         }
+
         // This should never be reached, but just in case
         return null;
     }
